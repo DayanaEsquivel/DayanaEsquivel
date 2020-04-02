@@ -1,26 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Route, Router } from 'react-router'
 import './App.css';
+import PropTypes from 'prop-types'
 
-function App() {
+import UserDetail from './views/UserDetail'
+
+import Home from './views/Home'
+//import { createBrowserHistory } from 'history'
+
+function App(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router history= {props.history }>
+      <div className="App">
+        <Route exact path="/" component={ Home }/>
+        <Route path="/detail/:userName" component={ UserDetail }/>
+      </div>
+    </Router>
+    
   );
 }
 
+App.prototype= {
+  history: PropTypes.any.isRequireds
+}
 export default App;
